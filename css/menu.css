@@ -1,1 +1,8 @@
 /* Write style sheet here */
+table{
+    text-align: center;
+}
+td{
+    padding: 10px;
+    background-color: lightgreen;
+}

@@ -19,19 +19,31 @@ window.onload = () => getPromise.then((response) => {
 
 //Write code to filter the menu item from list
 const category = document.getElementById('category');
-category.addEventListener('change', function (e) {
+category.addEventListener('change', (event) => {
     findItems(category.value);
 });
 const tab = document.getElementById('table');
 function findItems(categoryName) {
+    const opt3 = document.getElementById('menuvalues');
+    if (opt3) {
+        opt3.remove();
+    }
+    let opt2 = document.createElement("tbody");
+    opt2.setAttribute('id', 'menuvalues');
     getPromise.then((response) => {
         let c = response.data.filter((a) => (a.category === categoryName));
+        console.log(c);
 
-        let opt = document.createElement("tr");
-
-        opt.innerHTML = `
-       <td></td>`
+        c.forEach((i) => {
+            let opt1 = document.createElement("tr");
+            opt1.innerHTML = `
+            <td>${i.itemName}</td>
+            <td>${i.price}</td>`;
+            opt2.appendChild(opt1);
+        }
+        )
     })
+    tab.appendChild(opt2);
 }
 
 
