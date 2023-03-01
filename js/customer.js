@@ -11,11 +11,17 @@ function setPasswordConfirmValidity() {
         but.disabled = true;
     }
 }
-
-const getPromise = axios.get("http://localhost:3001/customers");
+const form = document.getElementById("customerRegistrationForm");
 // Write code to submit customer details 
 function submitCustomerDetail(event) {
-
+    let data = new FormData(event.target);
+    event.preventDefault();
+    const obj = Object.fromEntries(data.entries());
+    const pos = axios.post(" http://localhost:3001/customers", obj);
+    pos.then((result) => {
+        window.alert(result);
+    });
+    form.reset();
 }
 
 

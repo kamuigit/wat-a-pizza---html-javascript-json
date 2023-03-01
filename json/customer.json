@@ -1,3 +1,24 @@
 {
-  "customers": []
+  "customers": [
+    {
+      "custID": "sadsad",
+      "name": "rwer",
+      "custPasword": "1234",
+      "custConfirmPassword": "1234",
+      "email": "werewr@gmail.com",
+      "contact": "9840466252",
+      "address": "asdsadsadsad",
+      "id": 1
+    },
+    {
+      "custID": "dsfdsfds",
+      "name": "rwer",
+      "custPasword": "12345",
+      "custConfirmPassword": "12345",
+      "email": "werewr@gmail.com",
+      "contact": "9840466252",
+      "address": "asdsddasdsad",
+      "id": 2
+    }
+  ]
 }
