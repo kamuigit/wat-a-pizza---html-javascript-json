@@ -20,14 +20,15 @@
     </div>
 
     <!-- Write drop down list code here  -->
+    <label for="category" class="fw-bold">Filter by Category</label>
     <select name="category" id="category">
-        <option selected> choose category</option>
+        <option selected>all</option>
     </select>
 
-    <div class="mt-2 me-4">
+    <div class="container me-5 mt-2">
         <table class="table" id="table">
             <thead>
-                <tr>
+                <tr id="table-head">
                     <th scope="col">Order item</th>
                     <th scope="col">Price</th>
                 </tr>

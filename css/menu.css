@@ -2,7 +2,16 @@
 table{
     text-align: center;
 }
-td{
-    padding: 10px;
-    background-color: lightgreen;
+#table-head{
+    background-color: white; 
+}
+tr{
+    padding: 10px; 
+    background-color: rgb(181, 248, 181);
+}
+#category{
+    background-color: darkblue;
+    color: white;
+    padding: 5px;
+    border: 2px solid white;
 }

@@ -15,6 +15,16 @@ window.onload = () => getPromise.then((response) => {
         opt.innerHTML = `${element}`;
         category.appendChild(opt);
     });
+    let opt2 = document.createElement("tbody");
+    opt2.setAttribute('id', 'menuvalues');
+    response.data.forEach((i) => {
+        let opt1 = document.createElement("tr");
+        opt1.innerHTML = `
+        <td>${i.itemName}</td>
+        <td>${i.price}</td>`;
+        opt2.appendChild(opt1);
+    })
+    tab.appendChild(opt2);
 });
 
 //Write code to filter the menu item from list
