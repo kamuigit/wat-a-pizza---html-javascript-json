@@ -42,7 +42,6 @@ function findItems(categoryName) {
     opt2.setAttribute('id', 'menuvalues');
     getPromise.then((response) => {
         let c = response.data.filter((a) => (a.category === categoryName));
-        console.log(c);
 
         c.forEach((i) => {
             let opt1 = document.createElement("tr");
