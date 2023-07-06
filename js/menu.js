@@ -40,18 +40,34 @@ function findItems(categoryName) {
     }
     let opt2 = document.createElement("tbody");
     opt2.setAttribute('id', 'menuvalues');
-    getPromise.then((response) => {
-        let c = response.data.filter((a) => (a.category === categoryName));
+    if (categoryName == "all") {
+        getPromise.then((response) => {
+            let c = response.data
 
-        c.forEach((i) => {
-            let opt1 = document.createElement("tr");
-            opt1.innerHTML = `
+            c.forEach((i) => {
+                let opt1 = document.createElement("tr");
+                opt1.innerHTML = `
+                <td>${i.itemName}</td>
+                <td>${i.price}</td>`;
+                opt2.appendChild(opt1);
+            }
+            )
+        })
+    }
+    else {
+        getPromise.then((response) => {
+            let c = response.data.filter((a) => (a.category === categoryName));
+
+            c.forEach((i) => {
+                let opt1 = document.createElement("tr");
+                opt1.innerHTML = `
             <td>${i.itemName}</td>
             <td>${i.price}</td>`;
-            opt2.appendChild(opt1);
-        }
-        )
-    })
+                opt2.appendChild(opt1);
+            }
+            )
+        })
+    }
     tab.appendChild(opt2);
 }
 

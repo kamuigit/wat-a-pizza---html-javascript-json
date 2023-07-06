@@ -1,3 +1,59 @@
 {
-  "order": []
+  "order": [
+    {
+      "orderId": "123",
+      "customerName": "goku",
+      "email": "naruto@gmail.com",
+      "phno": "+91-98745 63219",
+      "orderDate": "2023-07-16",
+      "address": "jgjghjghjghjg",
+      "price": "12",
+      "quantity": "5",
+      "amount": "60",
+      "Total": "66.88",
+      "OrderValue": [
+        {
+          "category": "Beverages",
+          "item": "Classic Mojito",
+          "price": "3.44",
+          "quantity": "2",
+          "amount": "6.88"
+        },
+        {
+          "category": "Main Course",
+          "item": "Cheese Burst Pizza",
+          "price": "12",
+          "quantity": "5",
+          "amount": "60"
+        }
+      ],
+      "id": 1
+    },
+    {
+      "orderId": "123",
+      "customerName": "goku",
+      "email": "naruto@gmail.com",
+      "phno": "+91-98745 63219",
+      "orderDate": "2023-07-16",
+      "address": "jgjghjghjghjg",
+      "Total": "66.88",
+      "OrderValue": [
+        {
+          "category": "Beverages",
+          "item": "Classic Mojito",
+          "price": "3.44",
+          "quantity": "2",
+          "amount": "6.88"
+        },
+        {
+          "category": "Main Course",
+          "item": "Cheese Burst Pizza",
+          "price": "12",
+          "quantity": "5",
+          "amount": "60"
+        }
+      ],
+      "id": 2
+    }
+  ]
 }

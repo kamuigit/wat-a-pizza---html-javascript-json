@@ -8,6 +8,7 @@
 // Save the order details on clicking the submit button
 let curDate = new Date().toISOString().split('T')[0];
 
+const getPromise = axios.get(" http://localhost:3000/menu");
 console.log(curDate);
 document.getElementById("orderDate").min = curDate;
 
@@ -18,20 +19,20 @@ const OrderValues = [];
 
 function addOrder() {
     const form = document.createElement("div");
-    form.setAttribute("class", "row addOrder ");
+    form.setAttribute("class", "row py-1 addOrder ");
     const row = document.getElementById("row-added");
-    form.innerHTML = `<div class="col ">
+    form.innerHTML = `<div class="col">
                 <select class="form-control category" name="categoryName">
                   <option selected>Choose category...</option>
                   <option value="Beverages">Beverages</option>
                   <option value="Starters">Starters</option>
-                  <option value="Main-Meal">Main Meal</option>
-                  <option value="Main-Meal">Desserts</option>
+                  <option value="Main Course">Main Course</option>
+                  <option value="Desserts">Desserts</option>
                 </select>
               </div>
               <div class="col">
                 <select class="form-control item" onfocus="showItem()" name="item">
-                <option selected>choose Item...</option>
+                <option selected >choose Item...</option>
                 </select>
               </div>
               <div class="col">
@@ -48,89 +49,114 @@ function addOrder() {
 
 }
 
-
-
+var selectIndex = 0;
 function showItem() {
     const categories = document.getElementsByClassName("category");
     const items = document.getElementsByClassName("item");
-    getPromise.then((response) => {
-        let c = response.data.filter((a) => (a.category === categoryName));
-        for (let i = 0; i < categories.length; i++) {
-            let category = categories[i].value;
-            let item = items[i];
-            if (category === "Starters") {
-                item.innerHTML = `
-      <option value="Dough Balls Doppio">Dough Balls Doppio</option>
-      <option value="Mix Salad Bowl">Mix Salad Bowl</option>
-      <option value="Garlic Bread Mozzarella">Garlic Bread Mozzarella</option>
-      <option value ="Veg Wrap"> Veg Wrap</option>`
+
+
+    for (let i = selectIndex; i < categories.length; i++) {
+        let category = categories[i].value;
+        let item = items[i];
+        getPromise.then((response) => {
+            let c = response.data.filter((a) => (a.category === category));
+            let a = "";
+            // console.log(c);
+            c.forEach((i) => {
+                a += "\n" + `
+                <option value="${i.itemName}">${i.itemName}</option>`;
             }
-            else if (category === "Main-Meal") {
-                item.innerHTML = `
-      <option value="Fruit Pizza">Fruit Pizza</option>
-      <option value="Mexican Delight Pizza">Mexican Delight Pizza</option>
-      <option value="Spaghetti">Spaghetti</option>
-      <option value="Cheese Burst Pizza">Cheese Burst Pizza</option>
-      <option value="Fresh Veggi Special Pizza">Fresh Veggi Special Pizza</option>`
-            }
-            else if (category === "Beverages") {
-                item.innerHTML = `
-      <option value="Berry Blast">Berry Blast</option>
-      <option value="Oreo Monster Shake">Oreo Monster Shake</option>
-      <option value="Classic Mojito">Classic Mojito</option>
-      <option value="Water Melon Ice Tea">Water Melon Ice Tea</option>
-      <option value="Diet Coke">Diet Coke</option>`
-            }
-        }
-    })
+            )
+            item.innerHTML = a;
+            //         if (category === "Starters") {
+            //             item.innerHTML = `
+            //   <option value="Dough Balls Doppio">Dough Balls Doppio</option>
+            //   <option value="Mix Salad Bowl">Mix Salad Bowl</option>
+            //   <option value="Garlic Bread Mozzarella">Garlic Bread Mozzarella</option>
+            //   <option value ="Veg Wrap"> Veg Wrap</option>`
+            //         }
+            //         else if (category === "Main-Meal") {
+            //             item.innerHTML = `
+            //   <option value="Fruit Pizza">Fruit Pizza</option>
+            //   <option value="Mexican Delight Pizza">Mexican Delight Pizza</option>
+            //   <option value="Spaghetti">Spaghetti</option>
+            //   <option value="Cheese Burst Pizza">Cheese Burst Pizza</option>
+            //   <option value="Fresh Veggi Special Pizza">Fresh Veggi Special Pizza</option>`
+            //         }
+            //         else if (category === "Beverages") {
+            //             item.innerHTML = `
+            //   <option value="Berry Blast">Berry Blast</option>
+            //   <option value="Oreo Monster Shake">Oreo Monster Shake</option>
+            //   <option value="Classic Mojito">Classic Mojito</option>
+            //   <option value="Water Melon Ice Tea">Water Melon Ice Tea</option>
+            //   <option value="Diet Coke">Diet Coke</option>`
+            //         }
+
+        })
+
+    }
+
 }
 function showPrice() {
+    const categories = document.getElementsByClassName("category");
     const items = document.getElementsByClassName("item");
     const prices = document.getElementsByClassName("price");
-    for (let i = 0; i < items.length; i++) {
-        let item = items[i].value;
-        let price = prices[i];
-        if (item === "Dough Balls Doppio") {
-            price.value = 5.95;
-        }
-        else if ((item === "Mix Salad Bowl")) {
-            price.value = 4;
-        }
-        else if (item === "Garlic Bread Mozzarella") {
-            price.value = 3.12;
-        }
-        else if (item === "Veg Wrap") {
-            price.value = 9.5;
-        }
-        else if (item === "Fruit Pizza" || item === "Spaghetti") {
-            price.value = 5;
-        }
+    getPromise.then((response) => {
+        for (let i = 0; i < items.length; i++) {
+            let category = categories[i].value;
+            let item = items[i].value;
+            let pric = prices[i];
 
-        else if (item === "Mexican Delight Pizza") {
-            price.value = 4.2;
+            let c = response.data.filter((a) => (a.category === category && a.itemName === item));
+            pric.setAttribute('value', `${c[0].price}`);
         }
-        else if (item === "Fresh Veggi Special Pizza") {
-            price.value = 15;
-        }
-        else if (item === "Cheese Burst Pizza") {
-            price.value = 12;
-        }
-        else if (item === "Berry Blast") {
-            price.value = 1.72;
-        }
-        else if (item === "Oreo Monster Shake") {
-            price.value = 3.78;
-        }
-        else if (item === "Classic Mojito") {
-            price.value = 3.44;
-        }
-        else if (item === "Water Melon Ice Tea") {
-            price.value = 2.5;
-        }
-        else if (item === "Diet Coke") {
-            price.value = 1;
-        }
-    }
+    });
+    items[selectIndex].disabled = true;
+    categories[selectIndex].disabled = true;
+    selectIndex++;
+
+
+    // if (item === "Dough Balls Doppio") {
+    //     price.value = 5.95;
+    // }
+    // else if ((item === "Mix Salad Bowl")) {
+    //     price.value = 4;
+    // }
+    // else if (item === "Garlic Bread Mozzarella") {
+    //     price.value = 3.12;
+    // }
+    // else if (item === "Veg Wrap") {
+    //     price.value = 9.5;
+    // }
+    // else if (item === "Fruit Pizza" || item === "Spaghetti") {
+    //     price.value = 5;
+    // }
+
+    // else if (item === "Mexican Delight Pizza") {
+    //     price.value = 4.2;
+    // }
+    // else if (item === "Fresh Veggi Special Pizza") {
+    //     price.value = 15;
+    // }
+    // else if (item === "Cheese Burst Pizza") {
+    //     price.value = 12;
+    // }
+    // else if (item === "Berry Blast") {
+    //     price.value = 1.72;
+    // }
+    // else if (item === "Oreo Monster Shake") {
+    //     price.value = 3.78;
+    // }
+    // else if (item === "Classic Mojito") {
+    //     price.value = 3.44;
+    // }
+    // else if (item === "Water Melon Ice Tea") {
+    //     price.value = 2.5;
+    // }
+    // else if (item === "Diet Coke") {
+    //     price.value = 1;
+    // }
+
 }
 
 function showItemAmount() {
@@ -165,9 +191,12 @@ function showOrder(event) {
     val.OrderValue = OrderValues;
 
     //val is the object which has all values from the form ready to be entered into json
+    const pos = axios.post("http://localhost:3002/order", val);
+    pos.then((result) => {
+        alert(`Order successfull Mr/Mrs ${val.customerName}`);
+        location.reload();
+    });
 
-    alert(`Order successfull Mr/Mrs ${val.customerName}`);
-    location.reload();
 
 }
 // when val categraname

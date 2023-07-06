@@ -1,1 +1,58 @@
-/* Write style sheet here */
+/* Write style code here*/
+header {
+  background-color: navy;
+  border-bottom: 3px solid orange;
+  color: cyan;
+}
+form {
+  margin: auto;
+  margin-top: 50px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid navy;
+  box-shadow: 0px 2px 8px orange;
+}
+p {
+  font-weight: bold;
+  margin-bottom: 0%;
+}
+#orderid,
+#name,
+#contactNo,
+#email,
+#address,
+#orderDate {
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  padding: 4px;
+  width: 100%;
+  height: 32px;
+  border: none;
+  border-bottom: 2px solid #aaa;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  transition: 0.2s ease;
+}
+
+#addbutton {
+  display: inline-block;
+  border: 2px solid black;
+  border-radius: 100%;
+  height: 30px;
+  width: 30px;
+  text-align: center;
+  padding: 0px;
+}
+span {
+  font-weight: bold;
+}
+#button {
+  width: fit-content;
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  border: 1px solid navy;
+  background-color: navy;
+  color: cyan;
+}

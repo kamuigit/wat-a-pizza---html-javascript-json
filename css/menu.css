@@ -1,17 +1,17 @@
 /* Write style sheet here */
-table{
-    text-align: center;
+table {
+  text-align: center;
 }
-#table-head{
-    background-color: white; 
+#table-head {
+  background-color: white;
 }
-tr{
-    padding: 10px; 
-    background-color: rgb(181, 248, 181);
+tr {
+  padding: 10px;
+  background-color: rgb(181, 248, 181);
 }
-#category{
-    background-color: darkblue;
-    color: white;
-    padding: 5px;
-    border: 2px solid white;
+#category {
+  background-color: darkblue;
+  color: white;
+  padding: 5px;
+  border: 2px solid white;
 }
